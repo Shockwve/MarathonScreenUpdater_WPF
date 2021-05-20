@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MSUWPF"
         mc:Ignorable="d"
-        Title="Marathon Screen Updater" Height="500" Width="610" Background="#444"
-        MouseDown="Window_MouseDown" Icon="D:\Pictures\Emotes\shockw1Lurk\shockw1Lurk.ico">
+        Title="Marathon Screen Updater" Height="500" Width="610" Background="#444" Icon="D:\Pictures\Emotes\shockw1Lurk\shockw1Lurk.ico">
 
     <TabControl>
         <TabItem Header="Runner Information">
@@ -83,11 +82,20 @@
                 <StackPanel Grid.Column="0" Margin="5" Orientation="Vertical">
                     <Label Foreground="White" FontWeight="Bold" Margin="10 5 10 10" Content="Horaro Schedule JSON URL:"/>
                     <Label Foreground="White" FontWeight="Bold" Margin="10" Content="Update Text while Scanning:"/>
+                    <Label Foreground="White" FontWeight="Bold" Margin="10" Content="Runner Column:"/>
+                    <Label Foreground="White" FontWeight="Bold" Margin="10" Content=""/>
+                    <Label Foreground="White" FontWeight="Bold" Margin="10" Content="Auto Cycle Runner Avatars?"/>
+                    
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="5" Orientation="Vertical">
-                    <TextBox Grid.Column="1" Grid.Row="1" Margin="10 5 10 10" Height="25px" Width="400px"/>
+                    <TextBox Name="JsonURLTextBox" Grid.Column="1" Grid.Row="1" Margin="10 5 10 10" Height="25px" Width="400px" TextChanged="TextBox_TextChanged"/>
                     <CheckBox Name="UpdateTextFilesCheckbox" Margin="10 17 10 10" IsChecked="True"/>
+                    <ComboBox Name="HoraroDataColumnsComboBox" Grid.Column="1" Grid.Row="1" Margin="10 15 10 10" Height="25px" Width="334"/>
+                    <Label Foreground="White" Content="Configure this if you want automatic avatar switching"/>
+                    <CheckBox Name="AutoCycleAvatarsCheckbox" Margin="10 35 10 10" IsChecked="False"/>
                 </StackPanel>
+                
+
             </Grid>
         </TabItem>
     </TabControl>
