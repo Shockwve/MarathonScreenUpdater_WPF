@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MSUWPF"
         mc:Ignorable="d"
-        Title="Marathon Screen Updater" Height="500" Width="610" Background="#444" Icon="D:\Pictures\Emotes\shockw1Lurk\shockw1Lurk.ico">
+        Title="Marathon Screen Updater" Height="692" Width="790" Background="#444" Icon="D:\Pictures\Emotes\shockw1Lurk\shockw1Lurk.ico">
 
     <TabControl>
         <TabItem Header="Runner Information">
@@ -23,7 +23,9 @@
 
                 <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Margin="5" Orientation="Horizontal">
                     <TextBlock Grid.Column="0" Grid.Row="0" FontSize="16" TextWrapping="WrapWithOverflow" Foreground="White">Current Run:</TextBlock>
-                    <TextBox Name="CurrentRunInformationBox" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Width="200" HorizontalAlignment="Left" Foreground="White" Background="Black"></TextBox>
+                    <StackPanel Name="CurrentRunPanel" Width="200">
+
+                    </StackPanel>
                     <TextBlock  FontSize="16" TextWrapping="WrapWithOverflow" Grid.RowSpan="2" Margin="5" Foreground="White">On Deck:</TextBlock>
                     <TextBox Name="NextRunInformationBox" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" Width="200" HorizontalAlignment="Left" Foreground="White" Background="Black"></TextBox>
                 </StackPanel>
@@ -78,14 +80,14 @@
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <StackPanel Grid.Column="0" Margin="5" Orientation="Vertical">
                     <Label Foreground="White" FontWeight="Bold" Margin="10 5 10 10" Content="Horaro Schedule JSON URL:"/>
                     <Label Foreground="White" FontWeight="Bold" Margin="10" Content="Update Text while Scanning:"/>
                     <Label Foreground="White" FontWeight="Bold" Margin="10" Content="Runner Column:"/>
                     <Label Foreground="White" FontWeight="Bold" Margin="10" Content=""/>
                     <Label Foreground="White" FontWeight="Bold" Margin="10" Content="Auto Cycle Runner Avatars?"/>
-                    
+
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="5" Orientation="Vertical">
                     <TextBox Name="JsonURLTextBox" Grid.Column="1" Grid.Row="1" Margin="10 5 10 10" Height="25px" Width="400px" TextChanged="TextBox_TextChanged"/>
@@ -94,7 +96,7 @@
                     <Label Foreground="White" Content="Configure this if you want automatic avatar switching"/>
                     <CheckBox Name="AutoCycleAvatarsCheckbox" Margin="10 35 10 10" IsChecked="False"/>
                 </StackPanel>
-                
+
 
             </Grid>
         </TabItem>

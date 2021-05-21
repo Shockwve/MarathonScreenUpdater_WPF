@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using System.Windows.Media.Imaging;
+using System.Text.RegularExpressions;
 
 namespace MSUWPF
 {
@@ -86,7 +87,7 @@ namespace MSUWPF
                 MessageBox.Show("Unknown Error has occured. See logs for further detail.");
             }
 
-            CurrentRunInformationBox.Text = updateRunInformationTextBox(curIndex);
+            updateRunInformationTextBox(curIndex);
             NextRunInformationBox.Text = updateRunInformationTextBox(getNextRunIndex());
 
             createTextFiles();
@@ -101,7 +102,7 @@ namespace MSUWPF
 
         public void resetUpdates(object sender, RoutedEventArgs e)
         {
-            CurrentRunInformationBox.Text = updateRunInformationTextBox(curIndex);
+            //CurrentRunInformationBox.Text = updateRunInformationTextBox(curIndex);
             NextRunInformationBox.Text = updateRunInformationTextBox(getNextRunIndex());
 
             createTextFiles();
@@ -111,8 +112,17 @@ namespace MSUWPF
         public string updateRunInformationTextBox(int index)
         { 
             string runInformation = "";
+            CurrentRunPanel.Children.Clear();
             for (int i = 0; i < curSchedule.columns.Length; i++)
             {
+                string rawColumnText = curSchedule.columns[i];
+
+                Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+                string labelText = rgx.Replace(rawColumnText, "_").Replace(" ", "");
+
+                CurrentRunPanel.Children.Add(new Label() { Name = $"{labelText}Label", Content = rawColumnText });
+                CurrentRunPanel.Children.Add(new TextBox() { Name = $"{labelText}TextBox", Width = 50 });
+
                 runInformation += $"{curSchedule.columns[i]} --> {curSchedule.items[index].data[i]}\r\n";
             }
 
@@ -170,7 +180,7 @@ namespace MSUWPF
             }
 
             string folderPathStart = $"{Environment.CurrentDirectory}\\{infoFolderName}\\{textToAppend}";
-            foreach (string infoSection in CurrentRunInformationBox.Text.Split("\r\n"))
+            /*foreach (string infoSection in CurrentRunInformationBox.Text.Split("\r\n"))
             {
                 if (!infoSection.Equals(""))
                 {
@@ -178,7 +188,7 @@ namespace MSUWPF
 
                     File.WriteAllText($"{folderPathStart}{ splitInfo[0].Substring(0, splitInfo[0].Length-1)}.txt", $"{splitInfo[1].Trim()}");
                 }
-            }
+            }*/
 
             if (!Comm1TextBox.Text.Equals("") || !Comm2TextBox.Text.Equals("") || !Comm3TextBox.Text.Equals("") || !Comm4TextBox.Text.Equals(""))
             {
@@ -241,7 +251,7 @@ namespace MSUWPF
                 HoraroDataColumnsComboBox.Items.Add(new Tuple<int, String>(i, curSchedule.columns[i]));
             }
 
-            CurrentRunInformationBox.Text = updateRunInformationTextBox(curIndex);
+            updateRunInformationTextBox(curIndex);
             NextRunInformationBox.Text = updateRunInformationTextBox(getNextRunIndex());
         }
 
