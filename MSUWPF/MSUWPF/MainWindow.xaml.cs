@@ -194,7 +194,10 @@ namespace MSUWPF
         {
             var lines = NextRunInformationBox.Text.Split("\r\n");
 
-            File.WriteAllText($"{Environment.CurrentDirectory}\\Coming_Up.txt", $"Later On: {lines[3].Split("-->")[1]} - {lines[0].Split("-->")[1]} ({lines[1].Split("-->")[1]})");
+            if ((bool)UpdateTextFilesCheckbox.IsChecked)
+            {
+                File.WriteAllText($"{Environment.CurrentDirectory}\\Coming_Up.txt", $"Later On: {lines[3].Split("-->")[1]} - {lines[0].Split("-->")[1]} ({lines[1].Split("-->")[1]})");
+            }
         }
 
         private int getRunnerColumnIndex()
